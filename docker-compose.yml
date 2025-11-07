@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  api:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./data:/app/data
+      - ./.cache:/app/.cache
+    environment:
+      - DATA_DIR=/app/data
+      - MODEL_NAME=sentence-transformers/all-MiniLM-L6-v2
+      - CACHE_DB=/app/.cache/embeddings.sqlite
+      - CORS_ORIGINS=http://localhost:3000
+      - DEFAULT_MODE=hybrid
+  web:
+    build: ./web
+    command: npm run dev -- --port 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/app
+    environment:
+      - NEXT_PUBLIC_API_BASE=http://localhost:8000
+    depends_on:
+      - api
+

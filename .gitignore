@@ -1,0 +1,45 @@
+# OS / tooling
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python / backend
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
+*.pyo
+*.pyd
+.coverage
+coverage.xml
+backend/.mypy_cache/
+backend/.ruff_cache/
+
+# Caches / DBs
+.cache/
+*.sqlite
+*.sqlite3
+
+# Node / frontend
+node_modules/
+web/node_modules/
+web/.next/
+web/.turbo/
+web/.vercel/
+web/dist/
+web/build/
+web/npm-debug.log*
+web/yarn-error.log*
+
+# Env files
+.env
+.env.*
+
+# Docker
+**/docker-compose.override.yml
+
+# Data (keep local CSVs out of git)
+# data/*.csv
+
+
